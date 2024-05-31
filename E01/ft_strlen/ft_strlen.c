@@ -1,10 +1,10 @@
-//Assignment name  : ft_strcpy
-//Expected files   : ft_strcpy.c
+//Assignment name  : ft_strlen
+//Expected files   : ft_strlen.c
 //Allowed functions: 
 //--------------------------------------------------------------------------------
-//Reproduce the behavior of the function strcpy (man strcpy).
+//Write a function that returns the length of a string.
 //Your function must be declared as follows:
-// char    *ft_strcpy(char *s1, char *s2);
+//int	ft_strlen(char *str);
 
 
 int	ft_strlen(char *str)
