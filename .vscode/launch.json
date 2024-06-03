@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/joseg/Documents/GitHub/Piscine/C03/ex00",
-      "program": "c:/Users/joseg/Documents/GitHub/Piscine/C03/ex00/build/Debug/outDebug",
+      "cwd": "c:/Users/joseg/Documents/GitHub/Piscine/C04/ex00",
+      "program": "c:/Users/joseg/Documents/GitHub/Piscine/C04/ex00/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
