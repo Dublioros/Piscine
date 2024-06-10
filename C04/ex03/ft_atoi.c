@@ -39,6 +39,9 @@ int	ft_atoi(char *str)
 	return (value * sign);
 }
 
+//main
+#include <unistd.h>
+#include <stdio.h>
 int main() {
     printf("%d\n", ft_atoi("---+--+1234ab567")); // Debería imprimir -1234
     return 0;
