@@ -10,40 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-static void	print_hex(int np)
+int	is_space(char c)
 {
-	char	*hex;
-
-	hex = "0123456789abcdef";
-	if (np > 16)
-	{
-		print_hex(np / 10);
-		print_hex(np % 10);
-	}
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
 	else
-	{
-		write(1, &hex[np], 1);
-	}
+		return (0);
 }
 
-void	ft_putstr_non_printable(char *str)
+int	ft_isnumber(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	sign;
+	int	value;
 
 	i = 0;
-	while (str[i])
+	value = 0;
+	sign = 1;
+	while (is_space(str[i]))
+		i++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		if ((str[i] <= 31 && str[i] >= 0) || str[i] == 127)
-		{
-			write(1, "\\", 1);
-			if (str[i] < 16)
-				write(1, "0", 1);
-			print_hex(str[i]);
-		}
-		else
-			write(1, &str[i], 1);
-		i += 1;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
+	while (ft_isnumber(str[i]))
+	{
+		value = value * 10 + str[i] - '0';
+		i++;
+	}
+	return (value * sign);
 }

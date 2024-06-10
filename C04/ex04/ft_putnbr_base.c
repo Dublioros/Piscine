@@ -1,56 +1,67 @@
 #include <unistd.h>
 
-int ft_strlen(char *str) {
-    int len = 0;
-    while (str[len] != '\0')
-        len++;
-    return len;
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }
 
-int is_valid_base(char *base) {
-    int i, j;
+int	ft_strlen(char *str)
+{
+	int	i;
 
-    if (ft_strlen(base) <= 1)
-        return 0;
-
-    i = 0;
-    while (base[i] != '\0') {
-        if (base[i] == '+' || base[i] == '-')
-            return 0;
-        j = i + 1;
-        while (base[j] != '\0') {
-            if (base[i] == base[j])
-                return 0;
-            j++;
-        }
-        i++;
-    }
-
-    return 1;
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void ft_putnbr_base_rec(int nbr, char *base, int base_len) {
-    if (nbr < 0) {
-        write(1, "-", 1);
-        nbr = -nbr;
-    }
-    if (nbr >= base_len)
-        ft_putnbr_base_rec(nbr / base_len, base, base_len);
-    write(1, &base[nbr % base_len], 1);
+int	is_valid_base(char *base)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (ft_strlen(base) < 2)
+		return (0);
+	while (base[i + 1])
+	{
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j] || base[i] == '+' || base[i] == '-'
+				|| base[j] == '+' || base[j] == '-' || base[i] <= ' '
+				|| base[i] > 126 || base[j] <= ' ' || base[j] > 126)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-void ft_putnbr_base(int nbr, char *base) {
-    if (!is_valid_base(base))
-        return;
+void	ft_putnbr_base(int nbr, char *base)
+{
+	long int	nb;
 
-    int base_len = ft_strlen(base);
-
-    if (nbr == 0) {
-        write(1, &base[0], 1);
-        return;
-    }
-
-    ft_putnbr_base_rec(nbr, base, base_len);
+	if (nbr == 0)
+	{
+		ft_putchar(base[0]);
+		return ;
+	}
+	nb = (long int)nbr;
+	if (!is_valid_base(base))
+		return ;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb != 0)
+	{
+		if (nb / ft_strlen(base) != 0)
+			ft_putnbr_base(nb / ft_strlen(base), base);
+		ft_putchar(base[nb % ft_strlen(base)]);
+	}
 }
 
 int main() {
